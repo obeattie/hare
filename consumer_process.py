@@ -44,7 +44,7 @@ class ConsumerProcess(object):
                 mail_admins(
                     fail_silently=False, # there truly is no hope if this fails
                     subject='Queue worker error',
-                    message=render_to_string('email/staff_notifications/worker_error.txt', {
+                    message=render_to_string('hare/worker_error.txt', {
                         'traceback': tb,
                         'message': message,
                         'fault_tolerant': fault_tolerant,
