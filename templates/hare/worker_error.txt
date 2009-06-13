@@ -1,0 +1,23 @@
+A queue worker process raised an error. The worker {% if fault_tolerant %}is{% else %}IS NOT{% endif %} still running.
+
+The offending message is likely still in the message queue.
+
+--------------------
+
+AMQP MESSAGE DETAILS
+    id: {{ message.message_id|default:"None" }}
+    Timestamp: {{ message.timestamp|date:"r"|default:"None" }}
+    Delivery mode: {{ message.delivery_mode|safe|default:"None" }}
+    Priority: {{ message.priority|safe|default:"None" }}
+    Expiration: {{ message.expiration|safe|default:"None" }}
+    Type: {{ message.type|safe|default:"None" }}
+    Creating user id: {{ message.user_id|safe|default:"None" }}
+    Creating application id: {{ message.app_id|safe|default:"None" }}
+    
+    Message payload: {{ message.body|safe|default:"None" }}
+
+--------------------
+
+TRACEBACK (at {% now "r" %})
+
+{{ traceback|safe }}
