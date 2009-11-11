@@ -3,7 +3,7 @@ from amqplib import client_0_8 as amqp
 
 from django.utils import simplejson
 
-from .log import logger
+from .utils.log import logger
 from .connection import AMQPConnection
 
 class Publisher(object):
