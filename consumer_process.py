@@ -5,7 +5,6 @@ import traceback
 from django.core.mail import mail_admins
 from django.template.loader import render_to_string
 
-from .utils.db import transaction
 from .utils.log import logger
 import .consumer as consumer
 
@@ -32,8 +31,7 @@ class ConsumerProcess(object):
     def run(self, fault_tolerant=True, **kwargs):
         for message in self.consumer.message_iterator(**kwargs):
             try:
-                with transaction(): # commit on success
-                    self.process_message(message)
+                self.process_message(message)
             except NotImplementedError:
                 # Subclassing ain't happened
                 raise
